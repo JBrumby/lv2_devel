@@ -1,0 +1,45 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+
+<https://github.com/JBrumby/scale-quantizer>
+    a lv2:Plugin ;
+    doap:name "Scale Quantizer" ;
+    lv2:name "Scale Quantizer" ;
+    rdfs:label "Scale Quantizer" ;
+    
+    lv2:port [
+        a lv2:InputPort, atom:AtomPort ;
+        atom:bufferType atom:Sequence ;
+        atom:supports midi:MidiEvent ;
+        lv2:index 0 ;
+        lv2:symbol "input" ;
+        lv2:name "MIDI Input" ;
+    ] , [
+        a lv2:OutputPort, atom:AtomPort ;
+        atom:bufferType atom:Sequence ;
+        atom:supports midi:MidiEvent ;
+        lv2:index 1 ;
+        lv2:symbol "output" ;
+        lv2:name "MIDI Output" ;
+    ] , [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 2 ;
+        lv2:symbol "scale_mode" ;
+        lv2:name "Scale Mode" ;
+        lv2:default 1 ;
+        lv2:minimum 0 ;
+        lv2:maximum 25 ;
+        lv2:integer 1 ;
+    ] , [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 3 ;
+        lv2:symbol "root_note" ;
+        lv2:name "Root Note" ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 11 ;
+        lv2:integer 1 ;
+    ] .
