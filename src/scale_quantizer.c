@@ -65,6 +65,32 @@ static void run(LV2_Handle instance, uint32_t sample_count) {
     // fprintf(stderr, "DEBUG: run() called - PLUGIN WORKS!\n"); / comenting this, makes cmd line available and usablemon
     ScaleQuantizer* plugin = (ScaleQuantizer*)instance;
 
+    if (!plugin->input) fprintf(stderr, "INPUT PORT NOT CONNECTED!\n");
+    if (!plugin->output) fprintf(stderr, "OUTPUT PORT NOT CONNECTED!\n");
+    if (!plugin->scale_mode) fprintf(stderr, "SCALE_MODE PORT NOT CONNECTED!\n");
+    if (!plugin->root_note) fprintf(stderr, "ROOT_NOTE PORT NOT CONNECTED!\n");
+
+    // prepare buffer
+    lv2_atom_sequence_clear(plugin->output);
+    plugin->output->atom.type = plugin->input->atom.type;
+
+    // get scale and root note
+    scale_mode_t current_scale = (scale_mode_t)(*plugin->scale_mode);
+    uint8_t current_root = (uint8_t)(*plugin->root_note);
+
+    // get midi-events
+    LV2_ATOM_SEQUENCE_FOREACH(plugin->input, ev) {
+        // got all?
+        if (lv2_atom_sequence_is_end(&plugin->input->body,
+                                     plugin->input->atom.size,
+                                     ev)) { 
+            break;
+        }
+
+        if (ev->body.type == plugin->midi_Event) {
+            
+        }
+    }
 }
 
 static void cleanup(LV2_Handle instance) {
