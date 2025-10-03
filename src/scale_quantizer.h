@@ -71,7 +71,34 @@ static const uint8_t MODES[NUM_MODES][12] = {
     [SPANISH]           = {0, 1, 3, 4, 5, 6, 8, 10}
 };
 
-
+static const uint8_t    MODE_LENGTHS[NUM_MODES] = {
+    [CHROMATIC]         = 12,
+    [MAJOR]             = 7, //{0, 2, 4, 5, 7, 9, 11},
+    [MINOR]             = 7, //{0, 2, 3, 5, 7, 8, 10},
+    [DORIAN]            = 7, //{0, 2, 3, 5, 7, 9, 10},
+    [MIXOLYDIAN]        = 7, //{0, 2, 4, 5, 7, 9, 10},
+    [LYDIAN]            = 7, //{0, 2, 4, 6, 7, 9, 11},
+    [PHRYGIAN]          = 7, //{0, 1, 3, 5, 7, 8, 10},
+    [LOCRIAN]           = 7, //{0, 1, 3, 4, 7, 8, 10},
+    [DIMINISHED]        = 8, //{0, 1, 3, 4, 6, 7, 9, 10}, 
+    [WHOLE_HALF]        = 8, //{0, 2, 3, 5, 6, 8, 9, 11}, 
+    [WHOLE_TONE]        = 6, //{0, 2, 4, 6, 8, 10},
+    [MINOR_BLUES]       = 6, //{0, 3, 5, 6, 7, 10},
+    [MINOR_PENTATONIC]  = 5, //{0, 3, 5, 7, 10},
+    [MAJOR_PENTATONIC]  = 5, //{0, 2, 4, 7, 9},
+    [HARMONIC_MINOR]    = 7, //{0, 2, 3, 5, 7, 8, 11},
+    [MELODIC_MINOR]     = 7, //{0, 2, 3, 5, 7, 9, 11},
+    [SUPER_LOCRIAN]     = 7, //{0, 1, 3, 4, 6, 8, 10},
+    [BHAIRAV]           = 7, //{0, 1, 4, 5, 7, 8, 11},
+    [HUNGARIAN_MINOR]   = 7, //{0, 2, 3, 6, 7, 8, 11},
+    [MINOR_GYPSY]       = 7, //{0, 1, 4, 5, 7, 8, 10},
+    [HIROJOSHI]         = 5, //{0, 2, 3, 7, 8},
+    [IN_SEN]            = 5, //{0, 1, 5, 7, 10},
+    [IWATO]             = 5, //{0, 1, 5, 6, 10},
+    [KUMOI]             = 5, //{0, 2, 3, 7, 9},
+    [PELOG]             = 6, //{0, 1, 3, 4, 7, 8},
+    [SPANISH]           = 8 //{0, 1, 3, 4, 5, 6, 8, 10}  
+};
 
 typedef enum {
     PORT_INPUT      = 0,
@@ -89,6 +116,15 @@ typedef struct {
     // Control Ports
     const float* scale_mode;
     const float* root_note;
+
+    // URID Mapping
+    LV2_URID_Map* map;
+    LV2_URID midi_Event;
+
+    // scale data
+    const uint8_t MODES[NUM_MODES][12];
+    const uint8_t MODE_LENGTHS[NUM_MODES];
+
 } ScaleQuantizer;
 
 

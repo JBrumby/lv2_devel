@@ -12,12 +12,28 @@ static LV2_Handle instantiate(
     fprintf(stderr, "DEBUG: instantiate() called\n");
     // # void* plugin = calloc(1, 1); just 1 byte for testing    
     ScaleQuantizer* plugin = (ScaleQuantizer*) calloc(1, sizeof(ScaleQuantizer));
-    fprintf(stderr, "DEBUG: Plugin allocated at %p\n", plugin);
+    // fprintf(stderr, "DEBUG: Plugin allocated at %p\n", plugin);
+
+    // URID Maping
+    LV2_URID_Map* map = NULL;
+    for (int i = 0; features[i]; i++) {
+        if (strcmp(features[i]->URI, LV2_URID__map) == 0) {
+            map = (LV2_URID_Map*)features[i]->data;
+        }
+    }
     
-    // fillin data
-    //plugin.
-    
-    return plugin;
+    if (!map) {
+        free(plugin);
+        return NULL;
+    }
+
+    plugin->map = map;
+    plugin->midi_Event = map->map(map->handle, LV2_MIDI__MidiEvent);
+
+    // copy scale _IO_wide_data
+    memcpy( (void*)plugin->MODES, MODES, sizeof(MODES) );
+    memcpy( (void*)plugin->MODE_LENGTHS, MODE_LENGTHS, sizeof(MODE_LENGTHS));
+    return (LV2_Handle)plugin;
 }
 
 
