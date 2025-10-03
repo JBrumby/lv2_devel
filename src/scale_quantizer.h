@@ -110,8 +110,8 @@ typedef enum {
 // Plugin Struct
 typedef struct {
     // in and out ports
-    const void* input;
-    void* output;
+    const LV2_Atom_Sequence* input;
+    LV2_Atom_Sequence* output;
 
     // Control Ports
     const float* scale_mode;
