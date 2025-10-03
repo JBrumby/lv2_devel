@@ -43,15 +43,15 @@ typedef enum {
 } scale_mode_t;
 
 static const uint8_t MODES[NUM_MODES][12] = {
-    [CHROMATIC] = {0,1,2,3,4,5,6,7,8,9,10,11},
-    [MAJOR]     = {0,2,4,5,7,9,11},
-    [MINOR]     = {0, 2, 3, 5, 7, 8, 10},
-    [DORIAN]    = {0, 2, 3, 5, 7, 9, 10},
-    [MIXOLYDIAN]= {0, 2, 4, 5, 7, 9, 10},
-    [LYDIAN]    = {0, 2, 4, 6, 7, 9, 11},
-    [PHRYGIAN]  = {0, 1, 3, 5, 7, 8, 10},
-    [LOCRIAN]   = {0, 1, 3, 4, 7, 8, 10},
-    [DIMINISHED]= {0, 1, 3, 4, 6, 7, 9, 10}, 
+    [CHROMATIC]         = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
+    [MAJOR]             = {0, 2, 4, 5, 7, 9, 11},
+    [MINOR]             = {0, 2, 3, 5, 7, 8, 10},
+    [DORIAN]            = {0, 2, 3, 5, 7, 9, 10},
+    [MIXOLYDIAN]        = {0, 2, 4, 5, 7, 9, 10},
+    [LYDIAN]            = {0, 2, 4, 6, 7, 9, 11},
+    [PHRYGIAN]          = {0, 1, 3, 5, 7, 8, 10},
+    [LOCRIAN]           = {0, 1, 3, 4, 7, 8, 10},
+    [DIMINISHED]        = {0, 1, 3, 4, 6, 7, 9, 10}, 
     [WHOLE_HALF]        = {0, 2, 3, 5, 6, 8, 9, 11}, 
     [WHOLE_TONE]        = {0, 2, 4, 6, 8, 10},
     [MINOR_BLUES]       = {0, 3, 5, 6, 7, 10},
@@ -65,19 +65,19 @@ static const uint8_t MODES[NUM_MODES][12] = {
     [MINOR_GYPSY]       = {0, 1, 4, 5, 7, 8, 10},
     [HIROJOSHI]         = {0, 2, 3, 7, 8},
     [IN_SEN]            = {0, 1, 5, 7, 10},
-  "Iwato":              [0, 1, 5, 6, 10],
-  "Kumoi":              [0, 2, 3, 7, 9],
-  "Pelog":              [0, 1, 3, 4, 7, 8],
-  "Spanish":            [0, 1, 3, 4, 5, 6, 8, 10]
+    [IWATO]             = {0, 1, 5, 6, 10},
+    [KUMOI]             = {0, 2, 3, 7, 9},
+    [PELOG]             = {0, 1, 3, 4, 7, 8},
+    [SPANISH]           = {0, 1, 3, 4, 5, 6, 8, 10}
 };
 
 
 
 typedef enum {
-    PORT_INPUT = 0,
-    PORT_OUTPU = 1,
+    PORT_INPUT      = 0,
+    PORT_OUTPUT     = 1,
     PORT_SCALE_MODE = 2,
-    PORT_ROT_NOTE = 3
+    PORT_ROOT_NOTE  = 3
 } PortIndex;
 
 // Plugin Struct
