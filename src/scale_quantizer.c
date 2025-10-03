@@ -10,11 +10,11 @@ static LV2_Handle instantiate(
     const LV2_Feature* const* features)
 {
     fprintf(stderr, "DEBUG: instantiate() called\n");
-    // # void* plugin = calloc(1, 1); einfach 1 byte u testzwecken    
+    // # void* plugin = calloc(1, 1); just 1 byte for testing    
     ScaleQuantizer* plugin = (ScaleQuantizer*) calloc(1, sizeof(ScaleQuantizer));
     fprintf(stderr, "DEBUG: Plugin allocated at %p\n", plugin);
     
-    // filln data
+    // fillin data
     //plugin.
     
     return plugin;
@@ -26,6 +26,22 @@ static LV2_Handle instantiate(
 static void connect_port(LV2_Handle instance, uint32_t port, void* data) {
     fprintf(stderr, "DEBUG: connect_port(%d) called\n", port);
     ScaleQuantizer* plugin = (ScaleQuantizer*)instance;
+
+    switch ((PortIndex)port) {
+        case PORT_SCALE_MODE:
+            plugin->scale_mode = (const float*)data;
+            break;
+        case PORT_ROOT_NOTE:
+            plugin->root_note = (float*)data;
+            break;
+        case PORT_INPUT:
+            plugin->input = (const float*)data;
+            break;
+        case PORT_OUTPUT:
+            plugin->output = (float*)data;
+            break;
+  }
+
 
 }
 
