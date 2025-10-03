@@ -55,4 +55,8 @@ test-run: debug
 	@timeout 5 bash -c 'LV2_PATH=$(CURDIR)/$(BUILD_DIR) jalv https://github.com/JBrumby/scale-quantizer' || true
 	@echo "Test completed"
 
+gdb: debug
+	LV2_PATH=$(CURDIR)/$(BUILD_DIR) cgdb --args jalv https://github.com/JBrumby/scale-quantizer
+
+
 .PHONY: all debug install clean test
